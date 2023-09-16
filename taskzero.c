@@ -5,16 +5,12 @@
 /**
  * _printf - Custom printf
  * @format: Parsed in parameter
- * Return: the number of characters printed
-*/
-
+ * Return: the number of characters printed (excluding the null terminator)
+ */
 int _printf(const char *format, ...)
 {
-	int i;
-	int count = 0;
-	char character;
-
 	va_list args;
+	int i, count = 0;
 
 	va_start(args, format);
 
@@ -22,32 +18,65 @@ int _printf(const char *format, ...)
 	{
 		if (format[i] == '%')
 		{
-			if (format[i + 1] == 'c')
+			i++;
+			if (format[i] == 'c')
 			{
-				character = va_arg(args, int);
-
-				putchar (character);
-				i++;
-				count++;
+				char character = va_arg(args, int);
+				putchar(character);
 			}
-			else if (format[i + 1] == 's')
+			else if (format[i] == 's')
 			{
 				char *str = va_arg(args, char *);
-
-				i++;
-				count += printf("%s", str);
+				while (*str)
+				{
+					putchar(*str);
+					str++;
+					count++;
+				}
 			}
-			else if (format[i + 1] == '%')
+			else if (format[i] == '%')
 			{
-				putchar ('%');
+				putchar('%');
 				count++;
 			}
-		} else
+			else
+			{
+				putchar('%');
+				putchar(format[i]);
+				count += 2;
+			}
+			count++;
+		}
+		else
 		{
 			putchar(format[i]);
 			count++;
 		}
 	}
+
 	va_end(args);
-	return (count);
+
+	return (count - 1); /* Exclude the null terminator */
+}
+
+
+/**
+ * main - program entry point
+ * Return: Always 0 success
+*/
+int main(void)
+{
+	int len;
+	int len2;
+	unsigned int ui;
+	void *addr;
+
+	_printf("Character:[%c]\n", 'H');
+	printf("Character:[%c]\n", 'H');
+	_printf("String:[%s]\n", "I am a string !");
+	printf("String:[%s]\n", "I am a string !");
+	len = _printf("Percent:[%%]\n");
+	len2 = printf("Percent:[%%]\n");
+
+	return (0);
 }
