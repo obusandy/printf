@@ -26,16 +26,13 @@ int _printf(const char *format, ...)
 
 				putchar (character);
 				i++;
-			} else if (format[i + 1] == 's')
-				count++;
-				count++;
+				count ++;
 			}
 			else if (format[i + 1] == 's')
 			{
 				char *str = va_arg(args, char *);
 
 				i++;
-			} else if (format[i + 1] == '%')
 				count += printf("%s", str);
 			}
 			else if (format[i + 1] == '%')
@@ -51,6 +48,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
-}
-}
 }
