@@ -1,17 +1,18 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
 
 /**
- * _printf - Custom printf
- * @format: Parsed in parameter
- * Return: the number of characters printed
+* _printf - Custom printf
+* @format: Parsed in parameter
+* Return: the number of characters printed
 */
 
 int _printf(const char *format, ...)
 {
 	int i;
+
 	int count = 0;
+
 	char character;
 
 	va_list args;
@@ -34,8 +35,13 @@ int _printf(const char *format, ...)
 			{
 				char *str = va_arg(args, char *);
 
-				i++;
-				count += printf("%s", str);
+			while (*str)
+			{
+				putchar(*str);
+				str++;
+				count++;
+			}
+			i++;
 			}
 			else if (format[i + 1] == '%')
 			{
