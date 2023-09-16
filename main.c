@@ -10,40 +10,44 @@
 
 int _printf(const char *format, ...)
 {
-    va_list args;
-    va_start(args, format);
+	va_list args;
 
-    int i;
-    int count = 0;
+	va_start(args, format);
 
-    for (i = 0; format[i] != '\0'; i++)
-    {
-        count = i + 1;
-        if (format[i] == '%')
-        {
-            if (format[i + 1] == 'c')
-            {
-                char character = va_arg(args, int);
-                putchar(character);
-                i++;
-            } else if (format[i + 1] == 's') {
-                char *str = va_arg(args, char *);
-                printf("%s", str);
-                i++;
-            } else if(format[i + 1] == '%')
-            {
-                putchar('%');
-                i++;
-            }
-            else{
-                printf("Failed");
-            }
-        }
-        else {
-            putchar(format[i]);
-        }
-    }
+	int i;
+	int count = 0;
 
-    va_end(args);
-    return(count);
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		count = i + 1;
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == 'c')
+			{
+				char character = va_arg(args, int);
+
+				putchar (character);
+				i++;
+			}
+			else if (format[i + 1] == 's')
+			{
+				char *str = va_arg(args, char *);
+
+				printf("%s", str);
+				i++;
+			}
+			else if (format[i + 1] == '%')
+			{
+				putchar ('%');
+				i++;
+			}
+		}
+		else
+		{
+			putchar(format[i]);
+		}
+	}
+
+	va_end(args);
+	return (count);
 }
