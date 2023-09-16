@@ -18,7 +18,6 @@ int _printf(const char *format, ...)
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		count = i + 1;
 		if (format[i] == '%')
 		{
 			if (format[i + 1] == 'c')
@@ -27,36 +26,28 @@ int _printf(const char *format, ...)
 
 				putchar (character);
 				i++;
+				count ++;
 			}
 			else if (format[i + 1] == 's')
 			{
 				char *str = va_arg(args, char *);
 
-				printf("%s", str);
 				i++;
+				count += printf("%s", str);
 			}
 			else if (format[i + 1] == '%')
 			{
 				putchar ('%');
-				i++;
+				count++;
 			}
 		}
 		else
 		{
 			putchar(format[i]);
+			count++;
 		}
 	}
 
 	va_end(args);
 	return (count);
-}
-
-int main(void)
-{
-    int len;
-    len = _printf("Hello");
-
-    printf("%d", len);
-
-    return (0);
 }
