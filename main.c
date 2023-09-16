@@ -10,7 +10,7 @@ int _printf(const char *format, ...)
 {
 	int i;
 	int count = 0;
-    char character;
+	char character;
 
 	va_list args;
 
@@ -27,37 +27,22 @@ int _printf(const char *format, ...)
 
 				putchar (character);
 				i++;
-			}
-			else if (format[i + 1] == 's')
+			} else if (format[i + 1] == 's')
 			{
 				char *str = va_arg(args, char *);
 
 				printf("%s", str);
 				i++;
-			}
-			else if (format[i + 1] == '%')
+			} else if (format[i + 1] == '%')
 			{
 				putchar ('%');
 				i++;
 			}
-		}
-		else
+		} else
 		{
 			putchar(format[i]);
 		}
 	}
-
 	va_end(args);
 	return (count);
-
-}
-
-int main(void)
-{
-    int len;
-    len = _printf("Hello");
-
-    printf("%d", len);
-
-    return (0);
 }
