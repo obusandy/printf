@@ -3,7 +3,9 @@
 
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
 
+void _putchar(char n);
 int _printf(const char *format, ...);
 
 #endif
