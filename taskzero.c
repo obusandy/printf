@@ -26,7 +26,7 @@ int _printf(const char *format, ...)
 
 				putchar (character);
 				i++;
-				count ++;
+				count++;
 			}
 			else if (format[i + 1] == 's')
 			{
