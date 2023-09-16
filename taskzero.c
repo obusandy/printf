@@ -26,24 +26,16 @@ int _printf(const char *format, ...)
 
 				putchar (character);
 				i++;
-<<<<<<< HEAD:taskzero.c
-			} else if (format[i + 1] == 's')
-=======
 				count ++;
 			}
 			else if (format[i + 1] == 's')
->>>>>>> update_script:main.c
 			{
 				char *str = va_arg(args, char *);
 
 				i++;
-<<<<<<< HEAD:taskzero.c
-			} else if (format[i + 1] == '%')
-=======
 				count += printf("%s", str);
 			}
 			else if (format[i + 1] == '%')
->>>>>>> update_script:main.c
 			{
 				putchar ('%');
 				count++;
@@ -56,8 +48,4 @@ int _printf(const char *format, ...)
 	}
 	va_end(args);
 	return (count);
-<<<<<<< HEAD:taskzero.c
 }
-=======
-}
->>>>>>> update_script:main.c
