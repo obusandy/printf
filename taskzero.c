@@ -4,50 +4,50 @@
 
 /**
  * _printf - Custom printf
- * @format: Format string with conversion specifiers
- * Return: Number of characters printed
- */
+ * @format: Parsed in parameter
+ * Return: the number of characters printed
+*/
+
 int _printf(const char *format, ...)
 {
-    va_list args;
-    int count = 0;
+	int i;
+	int count = 0;
+	char character;
 
-    va_start(args, format);
+	va_list args;
 
-    while (*format)
-    {
-        if (*format != '%')
-        {
-            putchar(*format);
-            count++;
-        }
-        else
-        {
-            format++;
-            switch (*format)
-            {
-                case 'c':
-                    count += putchar(va_arg(args, int));
-                    break;
+	va_start(args, format);
 
-                case 's':
-                    count += printf("%s", va_arg(args, char *));
-                    break;
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] == '%')
+		{
+			if (format[i + 1] == 'c')
+			{
+				character = va_arg(args, int);
 
-                case '%':
-                    count += putchar('%');
-                    break;
+				putchar (character);
+				i++;
+				count++;
+			}
+			else if (format[i + 1] == 's')
+			{
+				char *str = va_arg(args, char *);
 
-                default:
-                    putchar('%');
-                    putchar(*format);
-                    count += 2;
-            }
-        }
-        format++;
-    }
-
-    va_end(args);
-
-    return count;
+				i++;
+				count += printf("%s", str);
+			}
+			else if (format[i + 1] == '%')
+			{
+				putchar ('%');
+				count++;
+			}
+		} else
+		{
+			putchar(format[i]);
+			count++;
+		}
+	}
+	va_end(args);
+	return (count);
 }
