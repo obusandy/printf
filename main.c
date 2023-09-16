@@ -1,6 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
 
 /**
  * _printf - Custom printf
@@ -10,12 +8,13 @@
 
 int _printf(const char *format, ...)
 {
+	int i;
+	int count = 0;
+    char character;
+
 	va_list args;
 
 	va_start(args, format);
-
-	int i;
-	int count = 0;
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
@@ -24,7 +23,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == 'c')
 			{
-				char character = va_arg(args, int);
+				character = va_arg(args, int);
 
 				putchar (character);
 				i++;
@@ -50,4 +49,14 @@ int _printf(const char *format, ...)
 
 	va_end(args);
 	return (count);
+}
+
+int main(void)
+{
+    int len;
+    len = _printf("Hello");
+
+    printf("%d", len);
+
+    return (0);
 }
