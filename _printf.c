@@ -30,6 +30,12 @@ int _printf(const char *format, ...)
 			{
 				char *str = va_arg(args, char *);
 
+				if (str == NULL)
+				{
+					va_end(args);
+					return (-1);
+				}
+
 				for (j = 0; str[j] != '\0'; j++)
 				{
 					putchar(str[j]);
