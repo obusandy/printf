@@ -7,13 +7,19 @@
  * @format: The field
  * return: Nothing
 */
-void _printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
-	va_list args;
+	int count = 0;
 	char f;
 	int i;
 
+	va_list args;
+
 	va_start(args, format);
+
+	 if (format == NULL)
+                return (-1);
+
 	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
@@ -29,13 +35,16 @@ void _printf(const char *format, ...)
 			else
 			{
 				putchar('%');
-				putchar(format[i + 1]);
+				putchar(f);
+				count += 2;
 				i++;
 			}
 		} else
 		{
 			putchar(format[i]);
+			count++;
 		}
 	}
 	va_end(args);
+	return (count);
 }
