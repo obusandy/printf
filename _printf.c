@@ -1,23 +1,13 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
-#include <unistd.h>
-/**
- * _putchar - write characters on stdout
- * @n: character
- * Return: Nothing
-*/
-void _putchar(char n)
-{
-	write(1, &n, 1);
-}
 /**
  * print_percent - Prints % sign
  * Return: Always 1 for success
 */
 int print_percent(void)
 {
-	_putchar('%');
+	putchar('%');
 	return (1);
 }
 /**
@@ -27,7 +17,7 @@ int print_percent(void)
 */
 int print_char(int character)
 {
-	_putchar(character);
+	putchar(character);
 	return (1);
 }
 
@@ -42,7 +32,7 @@ int print_string(const char *str)
 
 	while (*str)
 	{
-		_putchar(*str);
+		putchar(*str);
 		str++;
 		count++;
 	}
@@ -77,19 +67,19 @@ int _printf(const char *format, ...)
 				count += print_string(str);
 			} else if (format[i + 1] == '%')
 			{
-				_putchar ('%');
+				putchar ('%');
 				count++;
 				i++;
 			} else
 			{
-				_putchar('%');
-				_putchar(format[i + 1]);
+				putchar('%');
+				putchar(format[i + 1]);
 				i++;
 				count += 2;
 			}
 		} else
 		{
-			_putchar(format[i]);
+			putchar(format[i]);
 			count++;
 		}
 	}
