@@ -7,11 +7,11 @@
  * @format: The field
  * Return: Nothing
 */
-void _func(const char *format, ...)
+int _func(const char *format, ...)
 {
 	va_list args;
 	char f;
-	int i;
+	int i, count = 0;
 
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
@@ -25,12 +25,14 @@ void _func(const char *format, ...)
 
 				printf("%d", num);
 				i++;
+				count++;
 			}
 			else
 			{
 				putchar('%');
 				putchar(format[i + 1]);
 				i++;
+				count++;
 			}
 		} else
 		{
@@ -38,4 +40,5 @@ void _func(const char *format, ...)
 		}
 	}
 	va_end(args);
+	return (count);
 }

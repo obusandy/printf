@@ -5,7 +5,7 @@
 #include <unistd.h>
 
 int _printf(const char *format, ...);
-void _func(const char *format, ...);
+int _func(const char *format, ...);
 void _putchar(char n);
 
 #endif
