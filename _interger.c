@@ -3,11 +3,11 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * _printf - does formatted printing
+ * _func - does formatted printing
  * @format: The field
  * Return: Nothing
 */
-int _printf(const char *format, ...)
+void _func(const char *format, ...)
 {
 	va_list args;
 	char f;
