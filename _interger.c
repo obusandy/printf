@@ -5,9 +5,9 @@
 /**
  * _printf - does formatted printing
  * @format: The field
- * return: Nothing
+ * Return: Nothing
 */
-void _printf(const char *format, ...)
+int _printf(const char *format, ...)
 {
 	va_list args;
 	char f;
