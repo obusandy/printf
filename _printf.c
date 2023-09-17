@@ -20,7 +20,6 @@ int print_char(int character)
 	putchar(character);
 	return (1);
 }
-
 /**
  * print_string - Simplify the work
  * @str: This is the pointer
