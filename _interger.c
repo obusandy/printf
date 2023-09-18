@@ -37,6 +37,7 @@ int _func(const char *format, ...)
 		} else
 		{
 			putchar(format[i]);
+			count++;
 		}
 	}
 	va_end(args);
