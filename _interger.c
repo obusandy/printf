@@ -3,19 +3,17 @@
 #include <stdarg.h>
 #include <unistd.h>
 /**
- * _printf - does formatted printing
+ * _func - does formatted printing
  * @format: The field
  * Return: Nothing
 */
-int _printf(const char *format, ...)
+int _func(const char *format, ...)
 {
 	va_list args;
 	char f;
 	int i, count = 0;
 
 	va_start(args, format);
-	if (format == NULL)
-		return (-1);
 
 	for (i = 0; format[i] != '\0'; i++)
 	{
