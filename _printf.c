@@ -2,15 +2,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 /**
- * print_percent - Prints % sign
- * Return: Always 1 for success
-*/
-int print_percent(void)
-{
-	putchar('%');
-	return (1);
-}
-/**
  * print_char - Print the character
  * @character: Takes the character
  * Return: Always 1
