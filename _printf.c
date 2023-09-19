@@ -1,7 +1,4 @@
 #include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
-#include <unistd.h>
 /**
  * _printf - Custom printf
  * @format: format string
@@ -39,6 +36,10 @@ int _printf(const char *format, ...)
 			_myputchar('%');
 			count++;
 			i++;
+		} else
+		{
+			_myputchar(format[i]);
+			count++;
 		}
 	}
 	va_end(args);
