@@ -45,7 +45,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == 'c')
 			{
-				char character = va_arg(args, int);
+				_putchar(va_arg(args, int));
 
 				i++;
 				count += print_char(character);
@@ -69,7 +69,7 @@ int _printf(const char *format, ...)
 			}
 		} else
 		{
-			putchar(format[i]);
+			_putchar(format[i]);
 			count++;
 		}
 	}

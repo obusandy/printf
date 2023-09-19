@@ -7,7 +7,7 @@
  * @format: The field
  * Return: Nothing
 */
-int _func(const char *format, ...)
+void _func(const char *format, ...)
 {
 	va_list args;
 	char f;
@@ -22,7 +22,7 @@ int _func(const char *format, ...)
 			f = format[i + 1];
 			if (f == 'd' || f == 'i')
 			{
-				int num = va_arg(args, int);
+				int num = (va_arg(args, int));
 				char digits[12];
 				int num_digits = 0;
 
