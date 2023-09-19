@@ -24,7 +24,7 @@ int _func(const char *format, ...)
 
 				if (num < 0)
 				{
-					putchar('-');
+					_myputchar('-');
 					num = -num;
 					count++;
 				} do {
@@ -32,20 +32,20 @@ int _func(const char *format, ...)
 					num /= 10;
 					} while (num > 0); for (j = num_digits - 1; j >= 0; j--)
 				{
-					putchar(digits[j]);
+					_myputchar(digits[j]);
 					count++;
 				}
 				i++;
 			} else
 			{
-				putchar('%');
-				putchar(f);
+				_myputchar('%');
+				_myputchar(f);
 				i++;
 				count++;
 			}
 		} else
 		{
-			putchar(format[i]);
+			_myputchar(format[i]);
 			count++;
 		}
 	}
