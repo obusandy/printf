@@ -6,7 +6,7 @@
  * @n: character
  * Return: Nothing
 */
-void _myputchar(char n)
+int _myputchar(char n)
 {
 	write(1, &n, 1);
 }
@@ -27,7 +27,7 @@ int print_char(int character)
 */
 int print_string(const char *str)
 {
-	int count = 0;
+	unsigned int count = 0;
 
 	while (*str)
 	{
@@ -44,7 +44,7 @@ int print_string(const char *str)
 */
 int _printf(const char *format, ...)
 {
-	int i, count = 0;
+	unsigned int i, count = 0;
 	va_list args;
 
 	va_start(args, format);
