@@ -1,60 +1,51 @@
+#include "main.h"
 #include <stdio.h>
-#include <limits.h>
 #include <stdarg.h>
-#include <unistd.h>
-#include <errno.h>
-
 /**
- * print_char - Write the character to standard output
- * @character: The character to write
- * Return: The number of characters written (1 on success, -1 on failure)
- */
+ * _myputchar - write characters on stdout
+ * @n: character
+ * Return: Nothing
+*/
+void _myputchar(char n)
+{
+	write(1, &n, 1);
+}
+/**
+ * print_char - Print the character
+ * @character: Takes the character
+ * Return: Always 1
+*/
 int print_char(int character)
 {
-	char c = character;
-
-	if (write(STDOUT_FILENO, &c, 1) == -1)
-	{
-		perror("write");
-		return (-1);
-	}
+	_myputchar(character);
 	return (1);
 }
-
 /**
- * print_string - Write the string to standard output
- * @str: The string to write
- * Return: The number of characters written
- */
+ * print_string - Simplify the work
+ * @str: This is the pointer
+ * Return: The count always 0
+*/
 int print_string(const char *str)
 {
 	int count = 0;
 
 	while (*str)
 	{
-		int result = write(STDOUT_FILENO, str, 1);
-
-		if (result == -1)
-		{
-			perror("write");
-			return (-1);
-		}
-		count++;
+		_myputchar(*str);
 		str++;
+		count++;
 	}
 	return (count);
 }
-
 /**
  * _printf - Custom printf
  * @format: Parsed in parameter
- * Return: The number of characters written
- */
+ * Return: the number of characters printed
+*/
 int _printf(const char *format, ...)
 {
-	int i, count = 0, result;
+	int i, count = 0;
 	va_list args;
-	char next_char;
 
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
@@ -66,73 +57,29 @@ int _printf(const char *format, ...)
 				char character = va_arg(args, int);
 
 				i++;
-				result = print_char(character);
-
-				if (result == -1)
-				{
-					va_end(args);
-					return (-1);
-				}
-				count += result;
-			}
-			else if (format[i + 1] == 's')
+				count += print_char(character);
+			} else if (format[i + 1] == 's')
 			{
 				char *str = va_arg(args, char *);
 
 				i++;
-				result = print_string(str);
-
-				if (result == -1)
-				{
-					va_end(args);
-					return (-1);
-				}
-				count += result;
-			}
-			else if (format[i + 1] == '%')
+				count += print_string(str);
+			} else if (format[i + 1] == '%')
 			{
-				char percent = '%';
-				int result = print_char(percent);
-
-				if (result == -1)
-				{
-					va_end(args);
-					return (-1);
-				}
-				count += result;
+				_myputchar ('%');
+				count++;
 				i++;
-			}
-			else
+			} else
 			{
-				char percent = '%';
-				int result = print_char(percent);
-
-				if (result == -1)
-				{
-					va_end(args);
-					return (-1);
-				}
-				next_char = format[i + 1];
-				
-				result = print_char(next_char);
-				if (result == -1)
-				{
-					va_end(args);
-					return (-1);
-				}
-				count += result;
+				_myputchar('%');
+				_myputchar(format[i + 1]);
 				i++;
+				count += 2;
 			}
-		}
-		else
+		} else
 		{
-			int result = print_char(format[i]);
-			if (result == -1)
-			{
-				va_end(args);
-				return (-1);
-			}
-			count += result;
+			_myputchar(format[i]);
+			count++;
 		}
 	}
 	va_end(args);
