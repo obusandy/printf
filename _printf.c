@@ -2,15 +2,6 @@
 #include <stdio.h>
 #include <stdarg.h>
 /**
- * _myputchar - write characters on stdout
- * @n: character
- * Return: Nothing
-*/
-int _myputchar(char n)
-{
-	write(1, &n, 1);
-}
-/**
  * print_char - Print the character
  * @character: Takes the character
  * Return: Always 1

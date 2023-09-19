@@ -4,7 +4,7 @@
  * @n: character
  * Return: Nothing
 */
-void _myputchar(char n)
+int _myputchar(char n)
 {
 	write(1, &n, 1);
 }
