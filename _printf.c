@@ -1,15 +1,7 @@
+#include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
 #include <unistd.h>
-/**
- * _myputchar - Prints a character
- * @c: Input pointer
- * Return: 1
-*/
-int _myputchar(char c)
-{
-	return (write(1, &c, 1));
-}
 /**
  * _printf - Custom printf
  * @format: format string
