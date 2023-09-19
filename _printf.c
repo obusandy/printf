@@ -1,6 +1,16 @@
 #include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
+/**
+ * _myputchar - write characters on stdout
+ * @n: character
+ * Return: 1
+*/
+int _myputchar(char n)
+{
+	return (write(1, &n, 1));
+}
 /**
  * _printf - Custom printf
  * @format: format string
