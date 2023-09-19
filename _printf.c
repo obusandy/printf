@@ -42,6 +42,7 @@ int _printf(const char *format, ...)
 		{
 			_myputchar(format[i]);
 			count++;
+			return (-1);
 		}
 	}
 	va_end(args);
