@@ -37,6 +37,8 @@ int _printf(const char *format, ...)
 {
 	int i, count = 0;
 	va_list args;
+	if (!format || (format[0] == '%' && format[1] == '\0'))
+		return (-1);
 
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
@@ -45,7 +47,7 @@ int _printf(const char *format, ...)
 		{
 			if (format[i + 1] == 'c')
 			{
-				_putchar(va_arg(args, int));
+				int num = va_arg(args, int);
 
 				i++;
 				count += print_char(character);
@@ -69,7 +71,7 @@ int _printf(const char *format, ...)
 			}
 		} else
 		{
-			_putchar(format[i]);
+			putchar(format[i]);
 			count++;
 		}
 	}
