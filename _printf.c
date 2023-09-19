@@ -1,76 +1,56 @@
-#include "main.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <unistd.h>
 /**
- * print_char - Print the character
- * @character: Takes the character
- * Return: Always 1
+ * _myputchar - Prints a character
+ * @c: Input pointer
+ * Return: 1
 */
-int print_char(int character)
+int _myputchar(char c)
 {
-	_myputchar(character);
-	return (1);
-}
-/**
- * print_string - Simplify the work
- * @str: This is the pointer
- * Return: The count always 0
-*/
-int print_string(const char *str)
-{
-	unsigned int count = 0;
-
-	while (*str)
-	{
-		_myputchar(*str);
-		str++;
-		count++;
-	}
-	return (count);
+	return (write(1, &c, 1));
 }
 /**
  * _printf - Custom printf
- * @format: Parsed in parameter
- * Return: the number of characters printed
+ * @format: format string
+ * Return: count
 */
 int _printf(const char *format, ...)
 {
-	unsigned int i, count = 0;
+	int i, count = 0;
 	va_list args;
 
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
-		{
-			if (format[i + 1] == 'c')
-			{
-				char character = va_arg(args, int);
-
-				i++;
-				count += print_char(character);
-			} else if (format[i + 1] == 's')
-			{
-				char *str = va_arg(args, char *);
-
-				i++;
-				count += print_string(str);
-			} else if (format[i + 1] == '%')
-			{
-				_myputchar ('%');
-				count++;
-				i++;
-			} else
-			{
-				_myputchar('%');
-				_myputchar(format[i + 1]);
-				i++;
-				count += 2;
-			}
-		} else
+		if (format[i] != '%')
 		{
 			_myputchar(format[i]);
 			count++;
+		}
+		if (format[i] == '%' && format[i + 1] == 'c')
+		{
+			_myputchar(va_arg(args, int));
+			i++;
+			count++;
+		}
+		if (format[i] == '%' && format[i + 1] == 's')
+		{
+			char *str = va_arg(args, char *);
+
+			while (*str)
+			{
+				_myputchar(*str);
+				count++;
+				str++;
+			}
+			i++;
+		}
+		if (format[i] == '%' && format[i + 1] == '%')
+		{
+			_myputchar('%');
+			count++;
+			i++;
 		}
 	}
 	va_end(args);
