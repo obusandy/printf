@@ -2,9 +2,9 @@
 /**
  * _myputchar - write characters on stdout
  * @n: character
- * Return: Nothing
+ * Return: 1
 */
 int _myputchar(char n)
 {
-	write(1, &n, 1);
+	return (write(1, &n, 1));
 }
