@@ -1,21 +1,50 @@
-#include "main.h"
-#include <stdio.h>
-#include <stdarg.h>
 #include <limits.h>
+#include <stdarg.h>
+#include <stdio.h>
+
 /**
- * _func - does formatted printing
- * @format: The field
- * Return: Nothing
-*/
+ * print_positive - Print a positive integer
+ * @num: The positive integer to print
+ * Return: The number of characters printed
+ */
+int print_positive(int num)
+{
+	char digits[12];
+	int count = 0, num_digits = 0;
+
+	if (num == 0)
+	{
+		putchar('0');
+		return (1);
+	}
+	while (num > 0)
+	{
+		digits[num_digits++] = num % 10 + '0';
+		num /= 10;
+	}
+
+	for (int i = num_digits - 1; i >= 0; i--)
+	{
+		putchar(digits[i]);
+		count++;
+	}
+
+	return (count);
+}
+
+/**
+ * _func - Does formatted printing with support for negative integers
+ * @format: The format string
+ * Return: The number of characters printed
+ */
 int _func(const char *format, ...)
 {
 	va_list args;
 	char f;
-	int i, j, count = 0;
+	int count = 0;
 
 	va_start(args, format);
-
-	for (i = 0; format[i] != '\0'; i++)
+	for (int i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
@@ -23,43 +52,30 @@ int _func(const char *format, ...)
 			if (f == 'd' || f == 'i')
 			{
 				int num = va_arg(args, int);
-				char digits[12];
-				int num_digits = 0;
 
 				if (num < 0)
 				{
 					putchar('-');
+					count++;
 					num = -num;
-					count++;
 				}
-
-				do
-				{
-					digits[num_digits++] = num % 10 + '0';
-					num /= 10;
-					} while (num > 0);
-
-				for (j = num_digits - 1; j >= 0; j--)
-				{
-					putchar(digits[j]);
-					count++;
-				}
-
+				count += print_positive(num);
 				i++;
-			} else
-            {
+			}
+			else
+			{
 				putchar('%');
 				putchar(f);
+				count += 2;
 				i++;
-				count++;
 			}
-		} else
+		}
+		else
 		{
 			putchar(format[i]);
 			count++;
 		}
-	}
-
+		}
 	va_end(args);
-	return count;
+	return (count);
 }
