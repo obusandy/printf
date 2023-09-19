@@ -19,26 +19,22 @@ int _printf(const char *format, ...)
 		{
 			_myputchar(format[i]);
 			count++;
-		}
-		if (format[i] == '%' && format[i + 1] == 'c')
+		} else if (format[i] == '%' && format[i + 1] == 'c')
 		{
 			_myputchar(va_arg(args, int));
 			i++;
 			count++;
-		}
-		if (format[i] == '%' && format[i + 1] == 's')
+		} else if (format[i + 1] == 's')
 		{
 			char *str = va_arg(args, char *);
 
 			while (*str)
 			{
-				_myputchar(*str);
-				count++;
+				count += _myputchar(*str);
 				str++;
 			}
 			i++;
-		}
-		if (format[i] == '%' && format[i + 1] == '%')
+		} else if (format[i] == '%' && format[i + 1] == '%')
 		{
 			_myputchar('%');
 			count++;
