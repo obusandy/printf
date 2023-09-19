@@ -18,7 +18,7 @@ int _printf(const char *format, ...)
 		if (format[i] != '%')
 		{
 			count += _myputchar(format[i]);
-		} else if (format[i] == '%' && format[i + 1] == 'c')
+		} else if (format[i + 1] == 'c')
 		{
 			count += _myputchar(va_arg(args, int));
 			i++;
@@ -32,12 +32,16 @@ int _printf(const char *format, ...)
 				str++;
 			}
 			i++;
-		} else if (format[i] == '%' && format[i + 1] == '%')
+		} else if (format[i + 1] == '%')
 		{
 			_myputchar('%');
 			count++;
 			i++;
-		} else
+		} else if (format[i + 1] == 'd')
+		{
+			int _func(const char *format, ...);
+		}
+		else
 		{
 			count += _myputchar(format[i]);
 		}
