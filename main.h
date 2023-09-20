@@ -5,8 +5,8 @@
 #include <stdarg.h>
 #include <unistd.h>
 
-int _printf(const char *format, ...);
-int _func(const char *format, ...);
+int _printf(const char *interger, ...);
+int _func(const char *num, ...);
 int _myputchar(char n);
 
 #endif

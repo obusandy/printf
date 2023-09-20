@@ -26,6 +26,10 @@ int _printf(const char *format, ...)
 		{
 			char *str = va_arg(args, char *);
 
+			if (str == NULL)
+			{
+				str = "(null)";
+			}
 			while (*str)
 			{
 				count += _myputchar(*str);
@@ -37,11 +41,7 @@ int _printf(const char *format, ...)
 			_myputchar('%');
 			count++;
 			i++;
-		} else if (format[i + 1] == 'd')
-		{
-			int _func(const char *format, ...);
-		}
-		else
+		} else
 		{
 			count += _myputchar(format[i]);
 		}

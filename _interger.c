@@ -3,21 +3,21 @@
 #include <stdarg.h>
 /**
  * _func - does formatted printing
- * @format: The field
+ * @interger: The field
  * Return: Nothing
 */
-int _func(const char *format, ...)
+int _func(const char *interger, ...)
 {
 	va_list args;
 	char f, digits[12];
 	int i, j, count = 0, num_digits = 0;
 
-	va_start(args, format);
-	for (i = 0; format[i] != '\0'; i++)
+	va_start(args, interger);
+	for (i = 0; interger[i] != '\0'; i++)
 	{
-		if (format[i] == '%')
+		if (interger[i] == '%')
 		{
-			f = format[i + 1];
+			f = interger[i + 1];
 			if (f == 'd' || f == 'i')
 			{
 				int num = va_arg(args, int);
@@ -45,7 +45,7 @@ int _func(const char *format, ...)
 			}
 		} else
 		{
-			_myputchar(format[i]);
+			_myputchar(interger[i]);
 			count++;
 		}
 	}
